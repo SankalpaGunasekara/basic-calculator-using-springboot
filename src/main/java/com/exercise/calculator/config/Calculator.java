@@ -1,9 +1,10 @@
 package com.exercise.calculator.config;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.persistence.Entity;
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class Calculator {
 
     Long[] args = new Long[] {10L,25L, 34L, 42L, 56L, 73L, 89L, 91L, 58L, 67L};

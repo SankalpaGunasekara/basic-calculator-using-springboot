@@ -1,7 +1,5 @@
 package com.exercise.calculator.config;
 
-
-
 public class Addition {
 
     public Addition(){}
