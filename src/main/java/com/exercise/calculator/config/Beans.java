@@ -1,5 +1,6 @@
 package com.exercise.calculator.config;
 
+import com.exercise.calculator.repositories.StudentRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
