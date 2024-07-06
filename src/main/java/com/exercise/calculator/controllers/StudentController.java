@@ -5,6 +5,8 @@ import com.exercise.calculator.services.StudentService;
 import com.exercise.calculator.student.Student;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("api/v1/student")
 public class StudentController {
@@ -38,6 +40,36 @@ public String hello(){
         public void deleteStudent(@PathVariable Long id){
         studentRepository.deleteById(id);
 }
+
+@RequestMapping(value="/update/{id}", method=RequestMethod.PATCH)
+    public void updateStudent(@PathVariable long id, @RequestBody Student updatedStudent){
+
+       Optional <Student> studentHolder = studentRepository.findById(id);
+
+       studentHolder.ifPresentOrElse(studentToUpdate ->{
+
+           if (updatedStudent.getName() != null){
+
+               studentToUpdate.setName(updatedStudent.getName());
+
+           }
+
+           if(updatedStudent.getDob() != null){
+
+               studentToUpdate.setDob(updatedStudent.getDob());
+           }
+
+           if(updatedStudent.getCourses() != null){
+
+               studentToUpdate.setCourses(updatedStudent.getCourses());
+           }
+           studentRepository.save(studentToUpdate);
+       }, () -> { throw new RuntimeException("Student not found" + id);});
+
+
+       }
+
+
 
 
 }
